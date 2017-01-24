@@ -35,7 +35,17 @@ app.get('/', function (req, res) {
     if (voteId === undefined) {
         res.send({result: 1, errMsg: 'no query named id'});
     } else {
-        res.send({result: 0, id: voteId, data: voteItems[voteId]});
+        let hasSubmitted = false;
+        let voteResult = voteResults[voteId];
+        if (voteResult !== undefined){
+            for (let index in voteResult) {
+                if (voteResult[index].uid == req.query['uid']) {
+                    hasSubmitted = true;
+                    break;
+                }
+            }
+        }
+        res.send({result: 0, id: voteId, submitted: hasSubmitted, data: voteItems[voteId]});
     }
 });
 
