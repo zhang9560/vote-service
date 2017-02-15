@@ -9,7 +9,7 @@ var voteItems = {};
 
 app.get('/', function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.send();
+    res.send('hello world');
 }).get('/result', function (req, res) {
     let voteId = req.query['id'];
     let voteResult = voteResults[voteId];
